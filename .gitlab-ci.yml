@@ -1,0 +1,51 @@
+image: golang:1.12.6
+
+variables:
+  REPO: github.com
+  GROUP: kekxv
+  PROJECT: kGoChat
+
+cache:
+  key: ${CI_COMMIT_REF_NAME}
+  paths:
+    - node_modules/
+    - k-go-chat-vue/node_modules/
+
+stages:
+  - test
+  - build
+  - build-web
+
+before_script:
+  - mkdir -p $GOPATH/src/$REPO/$GROUP $GOPATH/src/_/builds
+  - cp -r $CI_PROJECT_DIR $GOPATH/src/$REPO/$GROUP/$PROJECT
+  - ln -s $GOPATH/src/$REPO/$GROUP $GOPATH/src/_/builds/$GROUP
+  - go get -v -d ./...
+
+unit_tests:
+  stage: test
+  script:
+    - go test -short $(go list ./... | grep -v /k-go-chat-vue/)
+
+job-build:
+  stage: build
+  only:
+    - master
+
+  script:
+    - go build
+
+job-build-web:
+  stage: build-web
+  only:
+    - master
+
+  script:
+    - cd k-go-chat-vue
+    - npm set registry https://registry.npm.taobao.org
+    - npm install --progress=false
+    - npm run build
+  artifacts:
+    expire_in: 1 week
+    paths:
+      - k-go-chat-vue/dist
