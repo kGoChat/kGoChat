@@ -13,6 +13,7 @@ func (c *WebsocketController) onUser(_data interface{}) {
 		return
 	}
 	requestInfo := *_requestInfo
+	resultInfo.FnId = requestInfo.FnId
 	resultInfo.Type = requestInfo.Type
 	user := requestInfo.Data.(map[string]interface{})
 
@@ -40,6 +41,7 @@ func (c *WebsocketController) onUser(_data interface{}) {
 		break
 	default:
 		resultInfo.Code = -1
+		resultInfo.Data = nil
 		resultInfo.Message = "错误的 [Type] 参数"
 		break
 	}

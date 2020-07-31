@@ -6,6 +6,7 @@ import (
 )
 
 type RequestInfo struct {
+	FnId    int         `json:"fnId"`
 	Code    int         `json:"code"`
 	Type    string      `json:"type"`
 	Data    interface{} `json:"data"`

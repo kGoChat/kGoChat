@@ -5,17 +5,19 @@ import "kGoChat/datamodel"
 func (c *WebsocketController) onChat(_data interface{}) {
 	resultInfo := datamodel.ResultInfo{}
 	resultInfo.Type = "Chat"
-	if c.user.User == "" || len(c.user.User) == 0 {
-		resultInfo.Type = "ChatBack"
-		resultInfo.Code = -3
-		resultInfo.Message = "未登录"
-		_ = c.Conn.Emit("Chat", resultInfo)
-		return
-	}
 	_requestInfo, ok := datamodel.MapToRequestInfo(_data)
 	if !ok {
 		resultInfo.Code = -1
 		resultInfo.Message = "错误的参数"
+		_ = c.Conn.Emit("Chat", resultInfo)
+		return
+	}
+	resultInfo.Type = _requestInfo.Type
+	resultInfo.FnId = _requestInfo.FnId
+	if c.user.User == "" || len(c.user.User) == 0 {
+		resultInfo.Type = "ChatBack"
+		resultInfo.Code = -3
+		resultInfo.Message = "未登录"
 		_ = c.Conn.Emit("Chat", resultInfo)
 		return
 	}
@@ -29,11 +31,15 @@ func (c *WebsocketController) onChat(_data interface{}) {
 			resultInfo.Code = 0
 			msg["user"] = c.user.User
 			resultInfo.Data = msg
+			resultInfo.FnId = 0
 			_ = websocketControllers[i].Conn.Emit("Chat", resultInfo)
 			flag = true
 			break
 		}
 	}
+
+	resultInfo.Data = nil
+	resultInfo.FnId = _requestInfo.FnId
 	resultInfo.Type = "ChatBack"
 	if flag {
 		resultInfo.Code = 0
