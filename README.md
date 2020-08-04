@@ -1,5 +1,10 @@
 # Go web Iris 开发笔记
 
+## 编译状态 build status
+
+go test : ![go test CI](https://github.com/kGoChat/kGoChat/workflows/Go/badge.svg)
+
+
 ## demo 测试
 
 ```shell script
