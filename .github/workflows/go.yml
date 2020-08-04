@@ -32,8 +32,8 @@ jobs:
       - name: Get bindata.go
         run: |
           go get -u github.com/shuLhan/go-bindata/...
-          ls $GOROOT/bin
-          $GOROOT/go/bin/go-bindata ./public/...
+          ls $GOROOT/bin/*
+          $GOROOT/bin/go/bin/go-bindata ./public/...
 
       # - name: Build
       #   run: go build -v .
