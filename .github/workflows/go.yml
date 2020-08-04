@@ -29,10 +29,8 @@ jobs:
               curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
               dep ensure
           fi
-      - name: Get bindata.go
-        run: |
-          ls $GOPATH
-          $GOPATH/bin/go-bindata ./public/...
+          ls $GOROOT/bin
+          $GOROOT/bin/go-bindata ./public/...
 
       # - name: Build
       #   run: go build -v .
