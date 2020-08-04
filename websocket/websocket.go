@@ -33,7 +33,6 @@ type WebsocketController struct {
 func (c *WebsocketController) onLeave(roomName string) {
 	// This will call the "visit" event on all clients, except the current one,
 	// (it can't because it's left but for any case use this type of design)
-	delete(websocketControllers, c.Conn.ID())
 }
 
 func (c *WebsocketController) onJoin() {
@@ -56,4 +55,6 @@ func (c *WebsocketController) Get( /* websocket.Connection could be lived here a
 	c.onJoin()
 	// call it after all event callbacks registration.
 	c.Conn.Wait()
+
+	delete(websocketControllers, c.Conn.ID())
 }

@@ -25,6 +25,8 @@ before_script:
   - cd $GOPATH/src/$REPO_NAME
   - git submodule sync --recursive
   - git submodule update --init --recursive
+  - go get -u github.com/shuLhan/go-bindata/...
+  - go-bindata ./public/...
 
 stages:
   - test
@@ -42,10 +44,10 @@ format:
 compile:
   stage: build
   script:
-    - go build -race -ldflags "-extldflags '-static'" -o $CI_PROJECT_DIR/mybinary
+    - go build -race -ldflags "-extldflags '-static'" -o $CI_PROJECT_DIR/kGoChat
   artifacts:
     paths:
-      - mybinary
+      - kGoChat
 
 
 job-build-web:
@@ -61,4 +63,4 @@ job-build-web:
   artifacts:
     expire_in: 1 week
     paths:
-      - k-go-chat-vue/dist
+      - public

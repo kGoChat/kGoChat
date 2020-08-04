@@ -1,5 +1,46 @@
 # Go web Iris 开发笔记
 
+## demo 测试
+
+```shell script
+# 打包静态文件
+go get -u github.com/shuLhan/go-bindata/...
+go-bindata ./public/...
+# 不编译执行
+go run .
+# 编译后执行
+go build -race -ldflags "-extldflags '-static'" -o kGoChat
+./kGoChat
+```
+
+## 编译可执行文件
+
+```shell script
+# 编译的到 kGoChat 可执行文件
+go build -race -ldflags "-extldflags '-static'"
+```
+
+## IRIS embedding打包静态文件
+
+### 简介
+
+此包将任何文件转换为可管理的Go源代码。用于将二进制数据嵌入到go程序中。在转换为原始字节切片之前，文件数据可选地进行gzip压缩。
+
+它在go-bindata子目录中附带了一个命令行工具。此工具提供一组命令行选项，用于自定义生成的输出。
+
+### 提示
+
+- 先要安装`github.com/shuLhan/go-bindata/…`
+- 执行`go-bindata ./public/…`会出现一个`bindata.go`文件
+- 再行`main.go`
+
+```shell script
+go get -u github.com/shuLhan/go-bindata/...
+go-bindata ./public/...
+go build -race -ldflags "-extldflags '-static'"
+```
+
+
 ## 注意事项
 
 ### 包问题

@@ -31,6 +31,7 @@ require (
 	github.com/onsi/ginkgo v1.14.0 // indirect
 	github.com/ryanuber/columnize v2.1.0+incompatible // indirect
 	github.com/sergi/go-diff v1.1.0 // indirect
+	github.com/shuLhan/go-bindata v3.4.0+incompatible // indirect
 	github.com/shurcooL/sanitized_anchor_name v1.0.0 // indirect
 	github.com/smartystreets/goconvey v1.6.4 // indirect
 	github.com/valyala/fasthttp v1.15.1 // indirect

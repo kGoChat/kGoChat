@@ -20,7 +20,7 @@ func main() {
 
 	app := iris.New()
 
-	app.Logger().SetLevel("debug")
+	//app.Logger().SetLevel("debug")
 	//（可选）添加两个内置处理程序（handlers）
 	//可以从任何与 http 相关的恐慌（http-relative panics） 中恢复
 	//并将请求记录到终端。
@@ -29,7 +29,8 @@ func main() {
 
 	// load templates.
 	app.RegisterView(iris.HTML("./views", ".html"))
-	app.StaticWeb("/", "./public")
+	//app.StaticWeb("/", "./public")
+	app.StaticEmbedded("/", "./public", Asset, AssetNames)
 
 	//  "/"  服务于一个基于根路由的控制器。
 	mvc.New(app).Handle(new(controller.ExampleController))
