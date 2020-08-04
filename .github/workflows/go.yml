@@ -29,14 +29,14 @@ jobs:
               curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
               dep ensure
           fi
+      - name: Get bindata.go
+        run: |
           go-bindata ./public/...
 
-      - name: Build
-        run: go build -v .
-          go build -race -ldflags "-extldflags '-static'"
+      # - name: Build
+      #   run: go build -v .
+      - name: Build-static
+        run: go build -race -ldflags "-extldflags '-static'"
 
       - name: Test
-        run: go test -v .
-          go fmt $(go list ./... | grep -v /vendor/)
-          go vet $(go list ./... | grep -v /vendor/)
-          go test -race $(go list ./... | grep -v /vendor/)
+        run: go test -v . && go fmt $(go list ./... | grep -v /vendor/) && go vet $(go list ./... | grep -v /vendor/) && go test -race $(go list ./... | grep -v /vendor/)
