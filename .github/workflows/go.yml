@@ -31,9 +31,8 @@ jobs:
           fi
       - name: Get bindata.go
         run: |
-          ls $GOROOT
           ls $GOPATH
-          $GOROOT/bin/go-bindata ./public/...
+          $GOPATH/bin/go-bindata ./public/...
 
       # - name: Build
       #   run: go build -v .
