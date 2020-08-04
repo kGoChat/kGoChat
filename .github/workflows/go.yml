@@ -32,7 +32,7 @@ jobs:
       - name: Get bindata.go
         run: |
           go get -u github.com/shuLhan/go-bindata/...
-          find / -name go-bindata 2>/dev/null
+          find $GOROOT -name go-bindata 2>/dev/null
           ls $GOROOT/bin/*/
           $GOROOT/bin/go/bin/go-bindata ./public/...
 
