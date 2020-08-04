@@ -31,7 +31,8 @@ jobs:
           fi
       - name: Get bindata.go
         run: |
-          go-bindata ./public/...
+          go get -u github.com/shuLhan/go-bindata/...
+          $HOME/go/bin/go-bindata ./public/...
 
       # - name: Build
       #   run: go build -v .
