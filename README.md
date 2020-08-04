@@ -18,6 +18,26 @@ go build -race -ldflags "-extldflags '-static'" -o kGoChat
 ./kGoChat
 ```
 
+目前支持功能：
+
+1. WebSocket 对话，需要双方登录，并且输入对方名称。
+1. WebRTC 连接，目前只能在局域网内连接成功
+
+项目目标：
+
+1. 对话功能
+1. 文件传送
+1. WebRTC 对话
+1. WebRTC 视频
+1. WebRTC 语音
+1. WebRTC 文件传送
+
+
+## Demo 截图
+
+![k-go-chat-vue.png](k-go-chat-vue.png)
+
+
 ## 编译可执行文件
 
 ```shell script
