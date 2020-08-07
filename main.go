@@ -32,6 +32,13 @@ func main() {
 	//app.StaticWeb("/", "./public")
 	app.StaticEmbedded("/", "./public", Asset, AssetNames)
 
+	app.Get("/", func(ctx iris.Context) {
+		d, ok := Asset("public/index.html")
+		if ok == nil {
+			_, _ = ctx.Binary(d)
+		}
+	})
+
 	//  "/"  服务于一个基于根路由的控制器。
 	mvc.New(app).Handle(new(controller.ExampleController))
 
