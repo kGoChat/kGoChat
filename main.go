@@ -35,7 +35,7 @@ func main() {
 	app.Get("/", func(ctx iris.Context) {
 		d, ok := Asset("public/index.html")
 		if ok == nil {
-			_, _ = ctx.Binary(d)
+			_, _ = ctx.HTML(string(d))
 		}
 	})
 
