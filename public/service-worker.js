@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "precache-manifest.33be337bda4b1319fad7fda4386e643e.js"
+  "precache-manifest.f5bc94cc0f559d22b5ebf7071c37b4aa.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "k-go-chat-vue"});
